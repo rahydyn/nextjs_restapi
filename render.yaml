@@ -1,12 +1,10 @@
 databases:
   - name: api_db
-    region: singapore
     databaseName: api_db
     user: api_db
 
 services:
   - type: web
-    region: singapore
     name: api
     env: python
     buildCommand: "./build.sh"
