@@ -1,4 +1,4 @@
-databaseas:
+databases:
   - name:api_db
     plan: free
     databaseName: api_db
