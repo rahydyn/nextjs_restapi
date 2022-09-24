@@ -1,13 +1,11 @@
 databases:
   - name: api_db
-    plan: free
     databaseName: api_db
     user: api_db
 
 services:
   - type: web
     name: api
-    plan: free
     env: python
     buildCommand: "./build.sh"
     startCommand: "gunicorn rest_api.wsgi:application"
