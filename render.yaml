@@ -1,6 +1,6 @@
 databases:
-  - name:api_db
-  - plan: free
+  - name: api_db
+    plan: free
     databaseName: api_db
     user: api_db
 
