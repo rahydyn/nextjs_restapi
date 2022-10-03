@@ -3,7 +3,8 @@ from __future__ import print_function
 from apiclient import discovery
 from httplib2 import Http
 from oauth2client import client, file, tools
-import os
+
+from rest_api.settings import BASE_DIR
 
 
 def retrieve_response(form_id):
@@ -11,13 +12,10 @@ def retrieve_response(form_id):
     SCOPES = "https://www.googleapis.com/auth/forms.responses.readonly"
     DISCOVERY_DOC = "https://forms.googleapis.com/$discovery/rest?version=v1"
 
-    dirname = os.getcwd()
-    token_path = os.path.join(dirname, "token.json")
-    store = file.Storage(token_path)
+    store = file.Storage(BASE_DIR + "/tests/token.json")
     creds = None
     if not creds or creds.invalid:
-        secrets_path = os.path.join(dirname, "client_secrets.json")
-        flow = client.flow_from_clientsecrets(secrets_path, SCOPES)
+        flow = client.flow_from_clientsecrets(BASE_DIR + "/tests/client_secrets.json", SCOPES)
         creds = tools.run_flow(flow, store)
     service = discovery.build('forms', 'v1', http=creds.authorize(
         Http()), discoveryServiceUrl=DISCOVERY_DOC, static_discovery=False)
