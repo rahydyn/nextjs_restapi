@@ -12,11 +12,11 @@ def retrieve_response(form_id):
     SCOPES = "https://www.googleapis.com/auth/forms.responses.readonly"
     DISCOVERY_DOC = "https://forms.googleapis.com/$discovery/rest?version=v1"
 
-    print(BASE_DIR + "/tests/token.json")
-    store = file.Storage(BASE_DIR + "/tests/token.json")
+    print(str(BASE_DIR) + "/tests/token.json")
+    store = file.Storage(str(BASE_DIR) + "/tests/token.json")
     creds = None
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets(BASE_DIR + "/tests/client_secrets.json", SCOPES)
+        flow = client.flow_from_clientsecrets(str(BASE_DIR) + "/tests/client_secrets.json", SCOPES)
         creds = tools.run_flow(flow, store)
     service = discovery.build('forms', 'v1', http=creds.authorize(
         Http()), discoveryServiceUrl=DISCOVERY_DOC, static_discovery=False)
