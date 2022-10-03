@@ -12,6 +12,7 @@ def retrieve_response(form_id):
     SCOPES = "https://www.googleapis.com/auth/forms.responses.readonly"
     DISCOVERY_DOC = "https://forms.googleapis.com/$discovery/rest?version=v1"
 
+    print(BASE_DIR + "/tests/token.json")
     store = file.Storage(BASE_DIR + "/tests/token.json")
     creds = None
     if not creds or creds.invalid:
