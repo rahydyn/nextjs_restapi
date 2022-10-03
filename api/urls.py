@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from api.views import TaskViewSet, CreateUserView, TaskListView, TaskRetrieveView, PostListView, PostRetrieveView
+from api.views import TaskViewSet, CreateUserView, TaskListView, TaskRetrieveView, PostListView, PostRetrieveView, AnswerListView, AnswerRetrieveView
 
 
 # viewsets.ModelViewSetから継承した場合とgenericsから継承した場合でpathの書き方が異なる！
@@ -17,4 +17,6 @@ urlpatterns = [
     path('register/', CreateUserView.as_view(), name='register'),
     path('auth/', include('djoser.urls.jwt')),
     path('', include(router.urls)),
+    path('list-answer/', AnswerListView.as_view(), name='list-answer'),
+    path('detail-answer/<str:pk>', AnswerRetrieveView.as_view(), name='detail-answer'),
 ]

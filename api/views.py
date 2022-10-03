@@ -1,8 +1,8 @@
 from rest_framework.permissions import AllowAny
 from rest_framework import generics
 from rest_framework import viewsets
-from .serializers import TaskSerializer, UserSerializer, PostSerializer
-from .models import Task, Post
+from .serializers import TaskSerializer, UserSerializer, PostSerializer, AnswerSerializer
+from .models import Task, Post, Answer
 # from django.shortcuts import render
 
 
@@ -39,3 +39,21 @@ class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     # JWTが要求される
+
+
+class AnswerListView(generics.ListAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+    permission_classes = (AllowAny,)
+
+
+class AnswerRetrieveView(generics.RetrieveAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+    permission_classes = (AllowAny,)
+
+
+class AnswerCreateView(generics.CreateAPIView):
+
+    serializer_class = AnswerSerializer
+    permission_classes = (AllowAny,)

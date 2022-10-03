@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import Task, Post
+from .models import Task, Post, Answer
 from django.contrib.auth.models import User
+from tests import retrieve
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -31,3 +32,21 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ('id', 'title', 'created_at')
+
+    def create(self, request):
+        print(request)
+        form_id = '1AEjMA7Wxtn8yPHXIhxWUzig22f8JIURa60Rk-1ZnUCY'
+        result = retrieve.retrieve_response(form_id)
+        print(result)
+        task = Task(title=request["title"])
+        task.save()
+        return task
+
+
+class AnswerSerializer(serializers.ModelSerializer):
+
+    created_at = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
+
+    class Meta:
+        model = Answer
+        fields = ('id', 'input_name', 'content', 'created_at')
