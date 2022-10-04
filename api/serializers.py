@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Task, Post, Answer
 from django.contrib.auth.models import User
-from tests import retrieve
+from tests.retrieve import retrieve_response
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,7 +36,7 @@ class TaskSerializer(serializers.ModelSerializer):
     def create(self, request):
         print(request)
         form_id = '1AEjMA7Wxtn8yPHXIhxWUzig22f8JIURa60Rk-1ZnUCY'
-        result = retrieve.retrieve_response(form_id)
+        result = retrieve_response(form_id)
         print(result)
         task = Task(title=request["title"])
         task.save()
