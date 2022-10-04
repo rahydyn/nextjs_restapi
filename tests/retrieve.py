@@ -24,6 +24,7 @@ def retrieve_response(form_id):
         # flow = client.flow_from_clientsecrets(str(BASE_DIR) + "/tests/client_secrets.json", SCOPES)
         flow = InstalledAppFlow.from_client_config(secret, SCOPES)
         print("check4")
+        print("check4")
         creds = tools.run_flow(flow, store)
         print("check5")
     service = discovery.build('forms', 'v1', http=creds.authorize(

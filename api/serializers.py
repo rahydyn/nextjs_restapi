@@ -33,14 +33,14 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = ('id', 'title', 'created_at')
 
-    def create(self, request):
-        print(request)
-        form_id = '1AEjMA7Wxtn8yPHXIhxWUzig22f8JIURa60Rk-1ZnUCY'
-        result = retrieve_response(form_id)
-        print(result)
-        task = Task(title=request["title"])
-        task.save()
-        return task
+    # def create(self, request):
+    #     print(request)
+    #     form_id = '1AEjMA7Wxtn8yPHXIhxWUzig22f8JIURa60Rk-1ZnUCY'
+    #     result = retrieve_response(form_id)
+    #     print(result)
+    #     task = Task(title=request["title"])
+    #     task.save()
+    #     return task
 
 
 class AnswerSerializer(serializers.ModelSerializer):
