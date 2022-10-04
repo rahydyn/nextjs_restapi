@@ -65,6 +65,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:3000",  # ローカルサーバー
     "http://localhost:3000",  # ローカルサーバー
     "https://nextjs-todos-e3q3.vercel.app" # next.jsのvercelのオリジンも追加する
 ]
