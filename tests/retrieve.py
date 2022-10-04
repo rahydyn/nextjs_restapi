@@ -1,10 +1,14 @@
 from __future__ import print_function
 
+import os
+
 from apiclient import discovery
 from httplib2 import Http
 from oauth2client import client, file, tools
+import json
 
 from rest_api.settings import BASE_DIR
+from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 def retrieve_response(form_id):
@@ -14,12 +18,11 @@ def retrieve_response(form_id):
 
     print(str(BASE_DIR) + "/tests/token.json")
     store = file.Storage(str(BASE_DIR) + "/tests/token.json")
-    print("check1")
     creds = None
-    print("check2")
     if not creds or creds.invalid:
-        print("check3")
-        flow = client.flow_from_clientsecrets(str(BASE_DIR) + "/tests/client_secrets.json", SCOPES)
+        secret = json.loads(os.environ["OAUTH_SECRET"])
+        # flow = client.flow_from_clientsecrets(str(BASE_DIR) + "/tests/client_secrets.json", SCOPES)
+        flow = InstalledAppFlow.from_client_config(secret, SCOPES)
         print("check4")
         creds = tools.run_flow(flow, store)
         print("check5")
